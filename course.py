@@ -1,36 +1,34 @@
-import sys
+def process_course_data(learner_name, course, duration, scores):
+    average = sum(scores) / len(scores)
 
-if len(sys.argv) == 7:
-    learner = sys.argv[1]
-    course = sys.argv[2]
-    duration = sys.argv[3]
-    a1 = int(sys.argv[4])
-    a2 = int(sys.argv[5])
-    a3 = int(sys.argv[6])
-else:
-    learner = "Aarav"
-    course = "DevOps Fundamentals"
-    duration = "12"
-    a1, a2, a3 = 82, 88, 90
+    if average >= 85:
+        status = "Distinction"
+    elif average >= 60:
+        status = "Pass"
+    else:
+        status = "Fail"
 
-# Calculate average
-average = (a1 + a2 + a3) / 3
+    return {
+        "learner_name": learner_name,
+        "course": course,
+        "duration": duration,
+        "scores": scores,
+        "average": average,
+        "status": status
+    }
 
-if average >= 85:
-    status = "Distinction"
-elif average >= 70:
-    status = "Successfully Completed"
-elif average >= 55:
-    status = "Completed"
-elif average >= 40:
-    status = "Partially Completed"
-else:
-    status = "Not Completed"
 
-# Display details
-print("Learner Name:", learner)
-print("Course:", course)
-print("Duration (weeks):", duration)
-print("Assessment Scores:", a1, a2, a3)
-print("Average Score:", average)
-print("Completion Status:", status)
+if __name__ == "__main__":
+    data = process_course_data(
+        "Aarav",
+        "DevOps Fundamentals",
+        12,
+        [82, 88, 90]
+    )
+
+    print("Learner Name:", data["learner_name"])
+    print("Course:", data["course"])
+    print("Duration (weeks):", data["duration"])
+    print("Assessment Scores:", *data["scores"])
+    print("Average Score:", data["average"])
+    print("Completion Status:", data["status"])
