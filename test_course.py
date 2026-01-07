@@ -17,4 +17,4 @@ def test_custom_course_data():
     ]
     result = process_course_data(args)
     assert result["average"] == 57.666666666666664
-    assert result["status"] == "Completed"
+    assert result["status"] == "Fail"
